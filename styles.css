@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+    background-image: url('/ackgroundchi.jpg'); /* Replace with your background image */
+    background-size: cover; /* Ensure the image covers the viewport */
+    background-repeat: no-repeat; /* Prevent repetition */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width of the viewport */
+    height: 100%; /* Full height of the viewport */
+    z-index: -1;
+    opacity: 0.5;
+}
+
+@keyframes moveBackground {
+    0% {
+        transform: translateX(0); /* Start at the original position */
+    }
+    100% {
+        transform: translateX(-100%); /* Move left by 100% of the width */
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px; /* Add padding for smaller devices */
+    text-align: center; /* Center-align content */
+}
+
+.zoom-image {
+    width: 200px; /* Default size for desktops */
+    animation: zoom 5s infinite alternate;
+}
+
+@keyframes zoom {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+#name-input {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    width: 80%; /* Adjust width for responsiveness */
+    max-width: 300px; /* Prevent it from becoming too wide on larger screens */
+    box-sizing: border-box;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .zoom-image {
+        width: 150px; /* Adjust image size for tablets */
+    }
+
+    #name-input {
+        font-size: 14px; /* Smaller font for tablets */
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .zoom-image {
+        width: 120px; /* Adjust image size for mobile */
+    }
+
+    #name-input {
+        font-size: 12px; /* Smaller font for mobile */
+        padding: 6px;
+    }
+
+    .content {
+        padding: 10px; /* Reduce padding for smaller screens */
+    }
+}

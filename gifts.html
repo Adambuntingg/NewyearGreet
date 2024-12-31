@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Celebration</title>
+    <link rel="stylesheet" href="gifts.css">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="content">
+        <img src="default-placeholder.jpg" alt="Gift" id="gift-image"> <!-- Placeholder image -->
+        <h2 id="greeting">Happy New Year!</h2>
+    </div>
+
+    <script>
+        // Retrieve user data from local storage
+        const userName = localStorage.getItem('userName');
+        const userIndex = localStorage.getItem('userIndex'); // Retrieve the user's array index
+
+        // Function to update the image and greeting dynamically
+        function updateContent() {
+            const greetingElement = document.getElementById('greeting');
+            const giftImage = document.getElementById('gift-image');
+
+            if (userName && userIndex !== null) {
+                greetingElement.textContent = `Happy New Year, ${userName}! Best wishes from Adam.`;
+                
+                // Update the image source dynamically
+                const dynamicSrc = `/image${userIndex}.jpg`;
+                giftImage.src = dynamicSrc;
+
+                // Handle image loading errors
+                giftImage.onerror = () => {
+                    console.error("Failed to load dynamic image. Reverting to placeholder.");
+                    giftImage.src = "default-placeholder.jpg"; // Fallback image
+                };
+            } else {
+                alert("No valid name found. Redirecting...");
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Call the function to update content
+        updateContent();
+    </script>
+</body>
+</html>
